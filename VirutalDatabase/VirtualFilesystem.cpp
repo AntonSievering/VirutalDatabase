@@ -29,7 +29,6 @@ void VirtualFilesystem::loadFiles() noexcept
 		if (parser.size() < 4) return; // Error
 
 		uint32_t nFiles = parser.parse<uint32_t>();
-		if (nFiles == 0) return; // No Files present -> Exit
 
 		for (uint32_t nCurrentFile = 0; nCurrentFile < nFiles && parser.size() >= 8; nCurrentFile++)
 		{
