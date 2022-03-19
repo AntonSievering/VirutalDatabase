@@ -67,7 +67,7 @@ uint64_t ParseResult::parse_as_uint64_t() noexcept
 		char c = m_pData->at(i + m_nOffset);
 
 		if ('0' <= c && c <= '9')
-			nNumber = nNumber * 10ui64 + uint64_t(c - '0');
+			nNumber = nNumber * uint64_t(10) + uint64_t(c - '0');
 	}
 
 	return nNumber;
@@ -116,7 +116,9 @@ std::size_t Parser::content_size() const noexcept
 
 ParseResult Parser::parse(uint32_t nBytes) noexcept
 {
-	return ParseResult(&m_sData, offset(), nBytes);
+	uint64_t oldOffset = m_nOffset;
+	m_nOffset += nBytes;
+	return ParseResult(&m_sData, oldOffset, nBytes);
 }
 
 ParseResult Parser::parse_until(const char token, const bool bCufOffToken) noexcept

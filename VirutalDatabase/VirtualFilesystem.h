@@ -24,4 +24,10 @@ public:
 	void addFile(const std::string &name, const std::string &sContent) noexcept;
 	void addFile(const std::string &name, std::string &&sContent) noexcept;
 	void addFile(std::string &&name, std::string &&sContent) noexcept;
+	void setFilename(const std::string &sFilename) noexcept;
+
+	std::map<std::string, std::string>::iterator begin() noexcept;
+	std::map<std::string, std::string>::const_iterator begin() const noexcept;
+	std::map<std::string, std::string>::iterator end() noexcept;
+	std::map<std::string, std::string>::const_iterator end() const noexcept;
 };

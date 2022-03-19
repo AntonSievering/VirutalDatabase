@@ -17,7 +17,7 @@ VirtualFilesystem::~VirtualFilesystem() noexcept
 
 void VirtualFilesystem::loadFiles() noexcept
 {
-	std::ifstream file = std::ifstream(m_sFilename);
+	std::ifstream file = std::ifstream(m_sFilename, std::ios::binary);
 
 	if (file.is_open())
 	{
@@ -91,4 +91,29 @@ void VirtualFilesystem::addFile(const std::string &name, std::string &&sContent)
 void VirtualFilesystem::addFile(std::string &&name, std::string &&sContent) noexcept
 {
 	m_mapFiles.emplace(std::move(name), std::move(sContent));
+}
+
+void VirtualFilesystem::setFilename(const std::string &sFilename) noexcept
+{
+	m_sFilename = sFilename;
+}
+
+std::map<std::string, std::string>::iterator VirtualFilesystem::begin() noexcept
+{
+	return m_mapFiles.begin();
+}
+
+std::map<std::string, std::string>::const_iterator VirtualFilesystem::begin() const noexcept
+{
+	return m_mapFiles.begin();
+}
+
+std::map<std::string, std::string>::iterator VirtualFilesystem::end() noexcept
+{
+	return m_mapFiles.end();
+}
+
+std::map<std::string, std::string>::const_iterator VirtualFilesystem::end() const noexcept
+{
+	return m_mapFiles.end();
 }
